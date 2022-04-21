@@ -30,7 +30,7 @@ public class SecondFragment extends Fragment {
 
         textView = view.findViewById(R.id.t);
 
-        if (getArguments() == null){
+        if (getArguments() != null){
             String text1 = getArguments().getString(MainFragment.KEY);
             textView.setText(text1);
         }

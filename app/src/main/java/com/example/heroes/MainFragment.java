@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainFragment extends Fragment {
 
+    private EditText editText;
     private Button button;
-public final static String KEY = "key";
+    public final static String KEY = "key";
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -27,8 +29,10 @@ public final static String KEY = "key";
         super.onViewCreated(view, savedInstanceState);
 
         button = view.findViewById(R.id.hello);
+        editText = view.findViewById(R.id.edit);
+
         Bundle bundle = new Bundle();
-        bundle.putString( KEY, "group");
+        bundle.putString( KEY, editText.getText().toString());
 
         SecondFragment secondFragment = new SecondFragment();
         secondFragment.setArguments(bundle);
@@ -37,7 +41,7 @@ public final static String KEY = "key";
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, secondFragment).addToBackStack("").commit();
+                requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.container, secondFragment).addToBackStack("").commit();
 
             }
         });
